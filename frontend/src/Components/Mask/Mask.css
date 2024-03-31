@@ -1,0 +1,70 @@
+.mask{
+    border-top: 0.5px solid gray; 
+    height: 40vh;
+    display: flex;
+    justify-content: row;
+}
+
+.mask-left{
+    display: flex;
+    flex-direction: column;
+}
+.mask-left h{
+    font-weight: 500;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    padding-left: 125px;
+    padding-right: 125px;
+    padding-top: 10vh;
+}
+.mask-left p{
+    font-weight: 200;
+    font-size: 15px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-left: 125px;
+    padding-right: 125px;
+}
+  
+  .mask-right {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    padding-right: 50px;
+    flex-basis: 70%;
+  }
+
+  .mask1div{
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .mask1{
+    width: auto;
+    height: auto;
+  }
+
+  .mask2div{
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .mask2{
+    width: auto;
+    height: auto;
+  }
+
+  .mask3div{
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .mask3{
+    width: auto;
+    height: auto;
+  }
