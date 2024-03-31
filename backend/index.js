@@ -1,31 +1,29 @@
-// Require necessary modules
-const express = require('express');
-const app = express();
-const port = 3000;
+// Import the pg module
+const { Pool } = require('pg');
 
-// Define routes for products, orders, users, etc.
-app.get('/products', (req, res) => {
-    res.send('Get all products');
+// Create a new pool using your PostgreSQL RDS credentials
+const pool = new Pool({
+  user: process.env.RDS_USERNAME,
+  database: process.env.RDS_DATABASE_NAME,
+  password: process.env.RDS_MASTER_PASS,
+  port: process.env.RDS_PORT, // Default port for PostgreSQL
 });
 
-app.post('/products', (req, res) => {
-    res.send('Create a new product');
-});
+// Connect to the database and run a query
+pool.connect((err, client, done) => {
+  if (err) throw err;
+  console.log('Connected to PostgreSQL RDS!');
 
-app.put('/products/:id', (req, res) => {
-    res.send(`Update product with id: ${req.params.id}`);
-});
+  client.query('SELECT NOW()', (err, res) => {
+    done();
 
-app.delete('/products/:id', (req, res) => {
-    res.send(`Delete product with id: ${req.params.id}`);
-});
+    if (err) {
+      console.log(err.stack);
+    } else {
+      console.log(res.rows[0]);
+    }
 
-// Set up a default route
-app.get('/', (req, res) => {
-    res.send('Welcome to the backend server!');
-});
-
-// Start the server and listen on the specified port
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    // Close the pool to end the session
+    pool.end();
+  });
 });
